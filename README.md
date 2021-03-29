@@ -1,3 +1,3 @@
 # TypeScript-Exercici-cotxes
 
-# canvi pwd GitHub - test sincro pwd SourceTree
+# modificar el codi font donat, per practicar TypeScript i POO
