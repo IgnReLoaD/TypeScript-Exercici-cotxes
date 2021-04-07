@@ -1,7 +1,9 @@
 // variable global tal com s'aconsella a l'enunciat,
 //   per tal que sigui accessible des de qualsevol funció
-var glbCar;
-var glbJob = [];
+// let glbCar:Car;
+// let glbJob = []; 
+var globCar;
+var globJob;
 // --- codi original donat per l'Enunciat ----------------------------------
 // function createCar(plate:string,brand:string,color:string){
 //     let car=new Car(plate,color,brand);
@@ -11,8 +13,28 @@ var glbJob = [];
 //     + " WHEELS: " + JSON.stringify(car.wheels);
 // }
 // ------------------------------------------------------------------------
+// matrícula validació a part
+function valMatric(matri) {
+    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
+    return normativa.test(matri.value) ? true : false;
+}
+;
+// function mostrar(arrCar:any):void {
+// console.log(arrCar.map());
+// document.getElementById("mostrarDatos").innerHTML = "Dades del cotxe son: " + arrCar.map();
+function mostrarDatos() {
+    console.log(globCar);
+    var pantalla = document.getElementById("mostrarDatos");
+    pantalla.innerHTML = "Dades del cotxe son: " + globCar.plate + ".";
+}
+;
+function msgErr() {
+    console.log("Dades incorrectes");
+    // document.getElementById("mostrarDatos").innerHTML = "Dades cotxe incorrectes.";
+}
+;
 // ------- MAIN funció principal --------------------------------------------------------
-function createCar() {
+function entradaTaller() {
     // recollim els INPUTS on es posa la info del Usuari
     var inpMatri = document.getElementById("inpPlate");
     var inpMarca = document.getElementById("inpBrand");
@@ -33,11 +55,13 @@ function createCar() {
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "Info requerida";
+        msgErr();
     }
-    else if (!valMatricula(inpMatri.value)) {
+    else if (!valMatric(inpMatri.value)) {
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "S'esperen 4 nums i 3 lletres";
+        msgErr();
     }
     else 
     // 2.- Marca ---------------------------
@@ -45,6 +69,7 @@ function createCar() {
         // inpMarca.classList.add("is-invalid");
         Invalidar(inpMarca);
         errMarca.textContent = "Info requerida";
+        msgErr();
     }
     else 
     // 3.- Color ---------------------------
@@ -52,6 +77,7 @@ function createCar() {
         // inpColor.classList.add("is-invalid");
         Invalidar(inpColor);
         errColor.textContent = "Info requerida";
+        msgErr();
     }
     // N.- Tot Validat OK --> podem Crear el cotxe, i afegir-lo a la llista de Feines de taller
     else {
@@ -61,12 +87,13 @@ function createCar() {
         // inpMatri.classList.remove("is-invalid");
         // inpMarca.classList.remove("is-invalid");
         // inpColor.classList.remove("is-invalid");
-        glbCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
-        glbJob.push(glbCar);
-        alert("Cotxe afegit a Feina satisfactoriament:  \n \n Matri: " + glbCar.plate + "\n Marca: " + glbCar.brand + "\n Color: " + glbCar.color);
-        mostrar();
+        globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
+        globJob.push(globCar);
+        alert("Cotxe afegit a Feina satisfactoriament:  \n \n Matri: " + globCar.plate + "\n Marca: " + globCar.brand + "\n Color: " + globCar.color);
+        mostrarDatos();
     }
 }
+;
 // function getDatos():any {
 // let matri: string   = toString(document.getElementById("inpPlate")?.nodeValue);
 // let matri:string = document.forms['frmCar']['inpPlate'];
@@ -131,24 +158,6 @@ function createCar() {
 //         return bolValidated = true;
 //     }   
 // }
-// matrícula validació a part
-function valMatricula(matri) {
-    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
-    return normativa.test(matri.value) ? true : false;
-}
-// function mostrar(arrCar:any):void {
-// console.log(arrCar.map());
-// document.getElementById("mostrarDatos").innerHTML = "Dades del cotxe son: " + arrCar.map();
-function mostrar() {
-    console.log(glbCar);
-    var pantalla = document.getElementById("mostrarDatos");
-    pantalla.innerHTML = "Dades del cotxe son: " + Car.plate + ".";
-}
-function msgError() {
-    console.log("Dades incorrectes");
-    // document.getElementById("mostrarDatos").innerHTML = "Dades cotxe incorrectes.";
-}
-;
 // 1.- Recollim dades Formulari i les validem dins la mateixa funció, retorna els 3 valors
 // let arrDatos: any[] = getDatos();
 //glbCar = new Car(arrDatos[1],arrDatos[2],arrDatos[3]);    

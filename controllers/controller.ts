@@ -1,7 +1,11 @@
 // variable global tal com s'aconsella a l'enunciat,
 //   per tal que sigui accessible des de qualsevol funció
-let glbCar:Car;
-let glbJob:any[] = [];
+
+// let glbCar:Car;
+// let glbJob = []; 
+let globCar:any;
+let globJob:any[];
+
 
 // --- codi original donat per l'Enunciat ----------------------------------
 // function createCar(plate:string,brand:string,color:string){
@@ -13,8 +17,32 @@ let glbJob:any[] = [];
 // }
 // ------------------------------------------------------------------------
 
+
+// matrícula validació a part
+function valMatric(matri:any):boolean {
+    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
+    return normativa.test(matri.value) ? true : false;
+};
+
+// function mostrar(arrCar:any):void {
+    // console.log(arrCar.map());
+    // document.getElementById("mostrarDatos").innerHTML = "Dades del cotxe son: " + arrCar.map();
+
+function mostrarDatos():void {    
+    console.log(globCar);
+    let pantalla = document.getElementById("mostrarDatos") as HTMLDivElement;
+    pantalla.innerHTML = "Dades del cotxe son: " + globCar.plate + ".";
+};
+
+function msgErr():void {
+    console.log("Dades incorrectes");
+    // document.getElementById("mostrarDatos").innerHTML = "Dades cotxe incorrectes.";
+};
+
+
+
 // ------- MAIN funció principal --------------------------------------------------------
-function createCar(){
+function entradaTaller():void {
 
     // recollim els INPUTS on es posa la info del Usuari
     let inpMatri = document.getElementById("inpPlate") as HTMLInputElement;
@@ -39,22 +67,26 @@ function createCar(){
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "Info requerida";
-    } else if (!valMatricula(inpMatri.value)) {
+        msgErr();
+    } else if (!valMatric(inpMatri.value)) {
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "S'esperen 4 nums i 3 lletres";
+        msgErr();
     } else 
     // 2.- Marca ---------------------------
     if (inpMarca.value == "") {
         // inpMarca.classList.add("is-invalid");
         Invalidar(inpMarca);
         errMarca.textContent = "Info requerida";
+        msgErr();
     } else 
     // 3.- Color ---------------------------
     if (inpColor.value == "") {
         // inpColor.classList.add("is-invalid");
         Invalidar(inpColor);
         errColor.textContent = "Info requerida";
+        msgErr();
     } 
     // N.- Tot Validat OK --> podem Crear el cotxe, i afegir-lo a la llista de Feines de taller
     else {
@@ -64,12 +96,12 @@ function createCar(){
         // inpMatri.classList.remove("is-invalid");
         // inpMarca.classList.remove("is-invalid");
         // inpColor.classList.remove("is-invalid");
-        glbCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);    
-        glbJob.push(glbCar);
-        alert("Cotxe afegit a Feina satisfactoriament:  \n \n Matri: " + glbCar.plate + "\n Marca: " + glbCar.brand + "\n Color: " + glbCar.color);
-        mostrar();
+        globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);    
+        globJob.push(globCar);
+        alert("Cotxe afegit a Feina satisfactoriament:  \n \n Matri: " + globCar.plate + "\n Marca: " + globCar.brand + "\n Color: " + globCar.color);
+        mostrarDatos();
     }
-}
+};
 
 
 // function getDatos():any {
@@ -146,28 +178,6 @@ function createCar(){
 //     }   
 // }
 
-// matrícula validació a part
-function valMatricula(matri) {
-    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
-    return normativa.test(matri.value) ? true : false;
-}
-
-// function mostrar(arrCar:any):void {
-    // console.log(arrCar.map());
-    // document.getElementById("mostrarDatos").innerHTML = "Dades del cotxe son: " + arrCar.map();
-
-function mostrar(){    
-    console.log(glbCar);
-    let pantalla = document.getElementById("mostrarDatos") as HTMLDivElement;
-    pantalla.innerHTML = "Dades del cotxe son: " + Car.plate + ".";
-}
-
-function msgError():void {
-    console.log("Dades incorrectes");
-    // document.getElementById("mostrarDatos").innerHTML = "Dades cotxe incorrectes.";
-};
-
-
     // 1.- Recollim dades Formulari i les validem dins la mateixa funció, retorna els 3 valors
     // let arrDatos: any[] = getDatos();
     //glbCar = new Car(arrDatos[1],arrDatos[2],arrDatos[3]);    
@@ -199,12 +209,12 @@ function msgError():void {
 function Invalidar(camp:any) {
     camp.classList.remove("is-valid");
     camp.classList.add("is-invalid");
-    }
+}
     
 // DEFINIR FUNCIO VALIDAR: afegeix la classe 'is-valid' al camp correcte, que fa:
 //                         1. mostra label en verd i un símbol de correcte
 //                         2. elimina qualsevol text d'error, es pot posar text de correcte
 function Validar(camp:any) {
-camp.classList.add("is-valid");
-camp.classList.remove("is-invalid");
+    camp.classList.add("is-valid");
+    camp.classList.remove("is-invalid");
 }
