@@ -1,4 +1,6 @@
 "use strict";
+exports.__esModule = true;
+exports.Wheel = void 0;
 var Wheel = /** @class */ (function () {
     function Wheel(diameter, brand) {
         this.diameter = diameter;
@@ -6,3 +8,4 @@ var Wheel = /** @class */ (function () {
     }
     return Wheel;
 }());
+exports.Wheel = Wheel;

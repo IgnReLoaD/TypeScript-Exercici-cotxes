@@ -8,3 +8,6 @@ class Wheel{
     }
 
 }
+
+// EXPORTAR la Classe, sino no podrà ser importat des d'un altre TS
+export { Wheel };

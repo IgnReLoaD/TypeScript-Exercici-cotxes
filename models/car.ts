@@ -1,3 +1,7 @@
+// importar la Clase filla (ha de ser exportada al final del TS fill) 
+//   alhora de utilitzar fem reingeniería inversa, de baix cap a dalt
+import { Wheel } from "./wheel";
+
 class Car{
     plate:string;
     color:string;
@@ -14,3 +18,6 @@ class Car{
         this.wheels.push(wheel);
     }
 }
+
+// EXPORTAR la Classe, sino no podrà ser importat des d'un altre TS
+export { Car };

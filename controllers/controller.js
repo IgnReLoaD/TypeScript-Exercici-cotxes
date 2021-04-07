@@ -1,3 +1,9 @@
+"use strict";
+exports.__esModule = true;
+// importar les Clases (han de ser exportades al final dels TS)
+var car_1 = require("../models/car");
+// no cal perquè la Classe CAR ja conté importada la seva filla WHEEL
+// import { Wheel } from "../models/wheel";
 // variable global tal com s'aconsella a l'enunciat,
 //   per tal que sigui accessible des de qualsevol funció
 // let glbCar:Car;
@@ -13,12 +19,6 @@ var globJob;
 //     + " WHEELS: " + JSON.stringify(car.wheels);
 // }
 // ------------------------------------------------------------------------
-// matrícula validació a part
-function valMatric(matri) {
-    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
-    return normativa.test(matri.value) ? true : false;
-}
-;
 // function mostrar(arrCar:any):void {
 // console.log(arrCar.map());
 // document.getElementById("mostrarDatos").innerHTML = "Dades del cotxe son: " + arrCar.map();
@@ -31,6 +31,26 @@ function mostrarDatos() {
 function msgErr() {
     console.log("Dades incorrectes");
     // document.getElementById("mostrarDatos").innerHTML = "Dades cotxe incorrectes.";
+}
+;
+// DEFINIR FUNCIO INVALIDAR: afegeix la classe 'is-invalid' al camp erroni, que fa:
+//                         1. mostra label en vermell i símbol admiració vermell
+//                         2. mostra un text en vermell a sota indicant l'error
+function Invalidar(camp) {
+    camp.classList.remove("is-valid");
+    camp.classList.add("is-invalid");
+}
+// DEFINIR FUNCIO VALIDAR: afegeix la classe 'is-valid' al camp correcte, que fa:
+//                         1. mostra label en verd i un símbol de correcte
+//                         2. elimina qualsevol text d'error, es pot posar text de correcte
+function Validar(camp) {
+    camp.classList.add("is-valid");
+    camp.classList.remove("is-invalid");
+}
+// matrícula validació a part
+function valMatric(matri) {
+    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
+    return normativa.test(matri.value) ? true : false;
 }
 ;
 // ------- MAIN funció principal --------------------------------------------------------
@@ -87,9 +107,9 @@ function entradaTaller() {
         // inpMatri.classList.remove("is-invalid");
         // inpMarca.classList.remove("is-invalid");
         // inpColor.classList.remove("is-invalid");
-        globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
+        globCar = new car_1.Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
         globJob.push(globCar);
-        alert("Cotxe afegit a Feina satisfactoriament:  \n \n Matri: " + globCar.plate + "\n Marca: " + globCar.brand + "\n Color: " + globCar.color);
+        alert("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         mostrarDatos();
     }
 }
@@ -173,17 +193,3 @@ function entradaTaller() {
 // valCar ? mostrar(newCar) : msgError();
 // 2.- Validem dades del Formulari    
 // let newCar:any     = getDatos();
-// DEFINIR FUNCIO INVALIDAR: afegeix la classe 'is-invalid' al camp erroni, que fa:
-//                         1. mostra label en vermell i símbol admiració vermell
-//                         2. mostra un text en vermell a sota indicant l'error
-function Invalidar(camp) {
-    camp.classList.remove("is-valid");
-    camp.classList.add("is-invalid");
-}
-// DEFINIR FUNCIO VALIDAR: afegeix la classe 'is-valid' al camp correcte, que fa:
-//                         1. mostra label en verd i un símbol de correcte
-//                         2. elimina qualsevol text d'error, es pot posar text de correcte
-function Validar(camp) {
-    camp.classList.add("is-valid");
-    camp.classList.remove("is-invalid");
-}
