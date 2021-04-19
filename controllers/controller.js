@@ -47,12 +47,22 @@ function Validar(camp) {
     camp.classList.add("is-valid");
     camp.classList.remove("is-invalid");
 }
-// matrícula validació a part
+// MATRICULA validació a part, segons PATTERN d'exemple d'internet amb JAVA:
+// private void textfield_matriculaKeyTyped (java.awt.event.KeyEvent evt) {                                             
+//     Pattern pat = Pattern.compile("^[0-9]{4}[a-zA-Z]{3}$");
+//     var regex = /^(\d{4}[a-zA-Z]{3})$/;
+//     Matcher mat = pat.matcher(textfield_matricula.getText());
 function valMatric(matri) {
-    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
-    return normativa.test(matri.value) ? true : false;
+    //let normativa = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
+    // return normativa.test(matri.value) ? true : false;
+    var regex = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
+    if (regex.test(matri)) {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
-;
 // ------- MAIN funció principal --------------------------------------------------------
 function entradaTaller() {
     // recollim els INPUTS on es posa la info del Usuari
