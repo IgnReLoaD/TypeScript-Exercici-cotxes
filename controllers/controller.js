@@ -55,12 +55,13 @@ function Validar(camp) {
 function valMatric(matri) {
     //let normativa = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
     // return normativa.test(matri.value) ? true : false;
-    var regex = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
-    if (regex.test(matri)) {
-        return false;
+    // let normativa = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
+    var normativa = /^(\d{4}[a-zA-Z]{3})$/;
+    if (normativa.test(matri.value)) {
+        return true;
     }
     else {
-        return true;
+        return false;
     }
 }
 // ------- MAIN funció principal --------------------------------------------------------
@@ -87,7 +88,7 @@ function entradaTaller() {
         errMatri.textContent = "Info requerida";
         msgErr();
     }
-    else if (!valMatric(inpMatri.value)) {
+    else if (!valMatric(inpMatri)) {
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "S'esperen 4 nums i 3 lletres";
@@ -119,6 +120,7 @@ function entradaTaller() {
         // inpColor.classList.remove("is-invalid");
         globCar = new car_1.Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
         globJob.push(globCar);
+        console.log("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         alert("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         mostrarDatos();
     }

@@ -61,15 +61,16 @@ function Validar(camp:any) {
 //     var regex = /^(\d{4}[a-zA-Z]{3})$/;
 //     Matcher mat = pat.matcher(textfield_matricula.getText());
 
-function valMatric(matri:any):boolean {
+function valMatric(matri:HTMLInputElement):boolean {
     
     //let normativa = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
     // return normativa.test(matri.value) ? true : false;
-    let regex = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
-    if (regex.test(matri)) {
-        return false;
-    }else{
+    // let normativa = /^(\d[0-9]{4}[a-zA-Z]{3})$/;
+    let normativa = /^(\d{4}[a-zA-Z]{3})$/;
+    if (normativa.test(matri.value)) {
         return true;
+    }else{
+        return false;
     }    
 }
 
@@ -100,7 +101,7 @@ function entradaTaller():void {
         Invalidar(inpMatri);
         errMatri.textContent = "Info requerida";
         msgErr();
-    } else if (!valMatric(inpMatri.value)) {
+    } else if (!valMatric(inpMatri)) {
         // inpMatri.classList.add("is-invalid");
         Invalidar(inpMatri);
         errMatri.textContent = "S'esperen 4 nums i 3 lletres";
