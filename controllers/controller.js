@@ -8,8 +8,10 @@ var car_1 = require("../models/car");
 //   per tal que sigui accessible des de qualsevol funció
 // let glbCar:Car;
 // let glbJob = []; 
+// let globCar:any;
+// let globJob:any[];
 var globCar;
-var globJob;
+var globJob = [];
 // --- codi original donat per l'Enunciat ----------------------------------
 // function createCar(plate:string,brand:string,color:string){
 //     let car=new Car(plate,color,brand);

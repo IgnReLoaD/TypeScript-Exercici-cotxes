@@ -9,9 +9,10 @@ import { Car   } from "../models/car";
 
 // let glbCar:Car;
 // let glbJob = []; 
-let globCar:any;
-let globJob:any[];
-
+// let globCar:any;
+// let globJob:any[];
+let globCar:Car;
+let globJob = []; 
 
 // --- codi original donat per l'Enunciat ----------------------------------
 // function createCar(plate:string,brand:string,color:string){
