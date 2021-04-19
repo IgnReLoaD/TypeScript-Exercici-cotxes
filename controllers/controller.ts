@@ -130,6 +130,7 @@ function entradaTaller():void {
         // inpColor.classList.remove("is-invalid");
         globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);    
         globJob.push(globCar);
+        console.log("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         alert("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         mostrarDatos();
     }
