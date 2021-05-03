@@ -12,7 +12,7 @@ import { Car   } from "../models/car";
 // let globCar:any;
 // let globJob:any[];
 let globCar:Car;
-let globJob = []; 
+let globJob = [];  
 
 // --- codi original donat per l'Enunciat ----------------------------------
 // function createCar(plate:string,brand:string,color:string){
@@ -130,7 +130,7 @@ function entradaTaller():void {
         // inpMatri.classList.remove("is-invalid");
         // inpMarca.classList.remove("is-invalid");
         // inpColor.classList.remove("is-invalid");
-        globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);    
+        globCar = new Car(inpMatri.value.toUpperCase(), inpMarca.value.toUpperCase(), inpColor.value.toUpperCase());    
         globJob.push(globCar);
         console.log("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         alert("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);

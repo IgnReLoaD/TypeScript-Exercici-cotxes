@@ -120,7 +120,7 @@ function entradaTaller() {
         // inpMatri.classList.remove("is-invalid");
         // inpMarca.classList.remove("is-invalid");
         // inpColor.classList.remove("is-invalid");
-        globCar = new car_1.Car(inpMatri.value.toUpperCase(), inpMarca.value, inpColor.value);
+        globCar = new car_1.Car(inpMatri.value.toUpperCase(), inpMarca.value.toUpperCase(), inpColor.value.toUpperCase());
         globJob.push(globCar);
         console.log("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
         alert("Cotxe entrat a taller satisfactoriament: " + globCar.plate + ", " + globCar.brand + ", " + globCar.color);
